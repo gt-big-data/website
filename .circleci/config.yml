@@ -4,6 +4,7 @@ jobs:
     filters:
       branches:
         - ci
+        - tim
     docker:
       - image: debian:stretch
     steps:
