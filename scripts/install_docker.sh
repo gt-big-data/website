@@ -5,7 +5,7 @@ apt-get -qq install -y \
     curl \
     gnupg2 \
     software-properties-common
-curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key -qq add -
+curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - -qq
 add-apt-repository -qq \
    "deb [arch=amd64] https://download.docker.com/linux/debian \
    $(lsb_release -cs) \
