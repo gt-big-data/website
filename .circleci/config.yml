@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: scripts/auth.sh  # Authenticate to Google Cloud
-      - run: sudo apt-get update && sudo apt-get install docker-ce  # Install docker
+      - run: apt-get update && apt-get install docker-ce  # Install docker
       - run: docker build --rm=false -t us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .  # Build image
       - run: gcloud docker -- push us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1  # Deploy image
 
