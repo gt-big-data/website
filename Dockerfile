@@ -1,8 +1,8 @@
-FROM python:3-alpine
+FROM crccheck/hello-world:latest
 
-WORKDIR /usr/src/app
+COPY src/index.html /www/index.html
 
-# Copy over installation requirements
-COPY requirements.txt ./
+EXPOSE 8000
 
-RUN pip install -U pip -r requirements.txt
+# Create a basic webserver and run it until the container is stopped 
+CMD trap "exit 0;" TERM INT; httpd -p 8000 -h /www -f & wait
