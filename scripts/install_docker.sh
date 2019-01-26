@@ -1,5 +1,5 @@
-apt-get update
-apt-get install -y \
+apt-get -qq update
+apt-get -qq install -y \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -10,4 +10,5 @@ add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/debian \
    $(lsb_release -cs) \
    stable"
-apt-get install -y docker-ce
+apt-get -qq update
+apt-get -qq install -y docker-ce
