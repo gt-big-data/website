@@ -1,20 +1,53 @@
 version: 2
 jobs:
+  build:
+    docker:
+      - image: alpine:latest
+    steps:
+      - run:
+          name: Nothing to Build
+          command: echo "Hello, world!"
+  test:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          run: apk add grep -y
+      - run:
+          name: Validate index.html
+          command: scripts/test.sh
   deploy:
     docker:
       - image: google/cloud-sdk:latest
     steps:
       - checkout
-      - run: scripts/auth.sh  # Authenticate to Google Cloud
-      - setup_remote_docker  # allow us to build a docker image
-      - run: docker build --rm=false -t us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .  # Build image
-      - run: gcloud docker -- push us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1  # Deploy image
+      - setup_remote_docker
+      - run:
+          name: Authenticate to Google Cloud
+          command: scripts/auth.sh
+      - run:
+          name: Build Image
+          command: docker build --rm=false -t us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .  # Build image
+      - run: 
+          name: Push Image to GCR
+          command: gcloud docker -- push us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1  # Deploy image
 
 workflows:
   version: 2
-  you_had_one_job:
+  build-test-deploy:
     jobs:
+      - build
+      - test:
+          requires:
+            - build
       - deploy:
+          requires:
+            - build
+            - test
           filters:
             branches:
-              only: daniel
+              only:
+                - master
+                - daniel
