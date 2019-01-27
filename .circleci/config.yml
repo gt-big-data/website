@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: scripts/auth.sh  # Authenticate to Google Cloud
-      - run: scripts/install_docker.sh
+      - setup_remote_docker  # allow us to build a docker image
       - run: docker build --rm=false -t us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .  # Build image
       - run: gcloud docker -- push us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1  # Deploy image
 
