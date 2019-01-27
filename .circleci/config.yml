@@ -25,7 +25,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Authenticate to Google Cloud
+          name: Set up Google Cloud
           command: scripts/auth.sh
       - run:
           name: Build Image
