@@ -8,7 +8,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Install Docker CLI
-          command: apk update && apk add docker-ce
+          command: apk update && apk add docker
       - run:
           name: Build Image
           command: docker build --rm=false -t us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .
