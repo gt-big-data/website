@@ -29,10 +29,10 @@ jobs:
           command: scripts/auth.sh
       - run:
           name: Build Image
-          command: docker build --rm=false -t us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .  # Build image
+          command: docker build --rm=false -t us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .
       - run: 
           name: Push Image to GCR
-          command: gcloud docker -- push us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1  # Deploy image
+          command: scripts/deploy.sh
 
 workflows:
   version: 2
