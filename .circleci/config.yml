@@ -1,17 +1,51 @@
 version: 2
 jobs:
   build:
-    filters:
-      branches:
-        - ci
-        - tim
     docker:
-      - image: debian:stretch
+      - image: alpine:latest
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install Docker CLI
+          command: apk update && apk add docker
+      - run:
+          name: Build Image
+          command: docker build --rm=false -t us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .
+  test:
+    docker:
+      - image: alpine:latest
     steps:
       - checkout
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: Install Dependencies
+          command: apk add grep
       - run:
-          name: Print the Current Time
-          command: date
+          name: Validate index.html
+          command: scripts/test.sh
+  deploy:
+    docker:
+      - image: google/cloud-sdk:latest
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Set up Google Cloud
+          command: scripts/auth.sh
+      - run:
+          name: Build Image
+          command: scripts/build.sh
+      - run: 
+          name: Push Image to GCR
+          command: scripts/deploy.sh
+
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - build
+      - test
+      - deploy:
+          requires:
+            - build
+            - test
