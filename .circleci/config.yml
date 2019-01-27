@@ -4,9 +4,11 @@ jobs:
     docker:
       - image: alpine:latest
     steps:
+      - checkout
+      - setup_remote_docker
       - run:
-          name: Nothing to Build
-          command: echo "Hello, world!"
+          name: Build Image
+          command: docker build --rm=false -t us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .
   test:
     docker:
       - image: alpine:latest
@@ -29,7 +31,7 @@ jobs:
           command: scripts/auth.sh
       - run:
           name: Build Image
-          command: docker build --rm=false -t us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .
+          command: scripts/build.sh
       - run: 
           name: Push Image to GCR
           command: scripts/deploy.sh
