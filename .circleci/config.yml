@@ -14,7 +14,7 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          run: apk add grep -y
+          command: apk add grep -y
       - run:
           name: Validate index.html
           command: scripts/test.sh
