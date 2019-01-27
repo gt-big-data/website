@@ -5,4 +5,4 @@ else
     export IMAGE_TAG=$CIRCLE_SHA1
 fi
 
-gcloud docker -- push us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$IMAGE_TAG
+docker push us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$IMAGE_TAG
