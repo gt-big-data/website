@@ -70,5 +70,4 @@ workflows:
           filters:
             branches:
               only:
-                - ci
                 - master
