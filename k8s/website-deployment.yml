@@ -19,5 +19,5 @@ spec:
         image: us.gcr.io/bdc-backend/website:ci
         ports:
         - name: http
-          containerPort: 3000
+          containerPort: 3001
           protocol: TCP
