@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: ${CIRCLE_PROJECT_REPONAME}
-        image: us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:latest
+        image: us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:ci
         ports:
         - name: http
           containerPort: 3000
