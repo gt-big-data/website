@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: website
+spec:
+  selector:
+    app: website
+  ports:
+  - protocol: TCP
+    port: 4000
+    targetPort: 3000
+  type: NodePort
