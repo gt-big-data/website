@@ -1,6 +1,6 @@
 set -e
 
-# Only update if something k8s-related has changed
+# Only update if something k8s-related diff's
 if git diff --name-only HEAD~1 HEAD | grep -q k8s
 then
     echo "Detected some changes to k8s configuration, updating..."
