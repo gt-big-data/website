@@ -1,10 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: ${PROJECT_NAME}
+  name: website
 spec:
   selector:
-    app: ${PROJECT_NAME}
+    app: website
   ports:
   - protocol: TCP
     port: 80
@@ -14,22 +14,22 @@ spec:
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: ${PROJECT_NAME}
+  name: website
   labels:
-    app: ${PROJECT_NAME}
+    app: website
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ${PROJECT_NAME}
+      app: website
   template:
     metadata:
       labels:
-        app: ${PROJECT_NAME}
+        app: website
     spec:
       containers:
-      - name: ${PROJECT_NAME}
-        image: us.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:latest
+      - name: website
+        image: us.gcr.io/${GOOGLE_PROJECT_ID}/website:latest
         ports:
         - name: http
           containerPort: 3000
