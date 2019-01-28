@@ -1,10 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: website
+  name: ${CIRCLE_PROJECT_REPONAME}
 spec:
   selector:
-    app: website
+    app: ${CIRCLE_PROJECT_REPONAME}
   ports:
   - protocol: TCP
     port: 80
@@ -14,22 +14,22 @@ spec:
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: website
+  name: ${CIRCLE_PROJECT_REPONAME}
   labels:
-    app: website
+    app: ${CIRCLE_PROJECT_REPONAME}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: website
+      app: ${CIRCLE_PROJECT_REPONAME}
   template:
     metadata:
       labels:
-        app: website
+        app: ${CIRCLE_PROJECT_REPONAME}
     spec:
       containers:
-      - name: website
-        image: us.gcr.io/${GOOGLE_PROJECT_ID}/website:latest
+      - name: ${CIRCLE_PROJECT_REPONAME}
+        image: us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:latest
         ports:
         - name: http
           containerPort: 3000
