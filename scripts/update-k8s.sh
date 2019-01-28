@@ -9,5 +9,5 @@ then
     kubectl apply -f --recursive=true ./k8s
     kubectl rollout status deployment/${CIRCLE_PROJECT_REPONAME}
 else
-    echo "No changes detected in k8s config, no update needed"
+    echo "No changes detected in k8s config, no update needed."
 fi
