@@ -1,0 +1,36 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: website
+spec:
+  selector:
+    app: website
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  type: LoadBalancer
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: website
+  labels:
+    app: website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: website
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      containers:
+      - name: website
+        image: us.gcr.io/${GOOGLE_PROJECT_ID}/website:latest
+        ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP

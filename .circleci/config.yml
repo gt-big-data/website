@@ -30,14 +30,29 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Set up Google Cloud
+          name: Authenticate to Google Cloud
           command: scripts/auth.sh
+      - run:
+          name: Connect Docker and Google Cloud
+          command: gcloud auth configure-docker
       - run:
           name: Build Image
           command: scripts/build.sh
       - run: 
           name: Push Image to GCR
           command: scripts/deploy.sh
+  update-k8s:
+    docker:
+      - image: google/cloud-sdk:latest
+    steps:
+      - checkout
+      - run:
+          name: Authenticate to Google Cloud
+          command: scripts/auth.sh
+      - run:
+          name: Update Kubernetes Configuration
+          command: scripts/update-k8s.sh
+
 
 workflows:
   version: 2
@@ -49,3 +64,12 @@ workflows:
           requires:
             - build
             - test
+      - update-k8s:
+          requires:
+            - build
+            - test
+          filters:
+            branches:
+              only:
+                - ci
+                - master
