@@ -19,11 +19,11 @@ spec:
       - path: /
         backend:
           serviceName: api
-          servicePort: 4000
+          servicePort: 4001
   - host: status.gtbigdata.club
     http:
       paths:
       - path: /
         backend:
           serviceName: status
-          servicePort: 4000
+          servicePort: 4002

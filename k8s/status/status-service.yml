@@ -7,6 +7,6 @@ spec:
     app: status
   ports:
   - protocol: TCP
-    port: 4000
-    targetPort: 8080
+    port: 4002
+    targetPort: 8484
   type: NodePort

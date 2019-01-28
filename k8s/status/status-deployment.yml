@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: status
-        image: google/nodejs-hello
+        image: willejs/go-hello-world
         ports:
         - name: http
-          containerPort: 8080
+          containerPort: 8484
           protocol: TCP
