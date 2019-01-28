@@ -14,15 +14,15 @@ jobs:
           command: docker build --rm=false -t us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .
   test:
     docker:
-      - image: alpine:latest
+      - image: python:3.7-alpine
     steps:
       - checkout
       - run:
           name: Install Dependencies
-          command: apk add grep
+          command: pip install -r requirements-dev.txt
       - run:
-          name: Validate index.html
-          command: scripts/test.sh
+          name: Run Tests
+          command: pytest -W ignore::DeprecationWarning
   deploy:
     docker:
       - image: google/cloud-sdk:latest
