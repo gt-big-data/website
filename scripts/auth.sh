@@ -1,3 +1,5 @@
+set -e
+
 # Authenticate to gcloud
 
 echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-

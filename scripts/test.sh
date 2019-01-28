@@ -1,3 +1,5 @@
+set -e
+
 if grep -Fq $CIRCLE_PROJECT_REPONAME src/index.html
 then
     echo "index.html seems configured correctly"
