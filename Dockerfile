@@ -1,8 +1,10 @@
-FROM crccheck/hello-world:latest
+FROM python:3.7-alpine
 
-COPY src/index.html /www/index.html
+COPY src ./
+COPY requirements.txt ./
+
+RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 3000
 
-# Create a basic webserver and run it until the container is stopped 
-CMD trap "exit 0;" TERM INT; httpd -p 3000 -h /www -f & wait
+CMD ["python", "app.py"]
