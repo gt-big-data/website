@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: ingress-router
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: bdc-backend
+    kubernetes.io/ingress.global-static-ip-name: bdc-kubernetes
 spec:
   rules:
   - http:
