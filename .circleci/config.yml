@@ -45,10 +45,10 @@ jobs:
           name: Connect Docker and Google Cloud
           command: gcloud auth configure-docker
       - run:
-          name: Retag Docker Image
-          command: scripts/build.sh && docker tag webserver:latest us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$IMAGE_TAG .
+          name: Tag image
+          command: scripts/build.sh
       - run: 
-          name: Push Image to GCR
+          name: Push image to GCR
           command: scripts/deploy.sh
   update-k8s:
     docker:
