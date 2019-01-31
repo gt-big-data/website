@@ -55,7 +55,7 @@ jobs:
                 export IMAGE_TAG=$CIRCLE_BRANCH
             fi
             docker tag webserver:latest us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$IMAGE_TAG
-            docker push docker push us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$IMAGE_TAG
+            docker push us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$IMAGE_TAG
       - run: 
           name: Push image to GCR
           command: scripts/deploy.sh
