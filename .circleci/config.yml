@@ -19,7 +19,7 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: pip install -r requirements-dev.txt
+          command: pip install -r requirements.txt
       - run:
           name: Run Tests
           command: pytest -W ignore::DeprecationWarning
@@ -71,3 +71,4 @@ workflows:
             branches:
               only:
                 - master
+                - content-restoration
