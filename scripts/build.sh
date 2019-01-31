@@ -9,6 +9,4 @@ else
     export IMAGE_TAG=$CIRCLE_BRANCH
 fi
 
-envsubst
-
 docker tag webserver:latest us.gcr.io/bdc-backend/website:content-restoration .
