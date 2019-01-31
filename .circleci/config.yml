@@ -11,10 +11,10 @@ jobs:
           command: apk update && apk add docker
       - run:
           name: Build Webserver Image
-          command: docker build -t webserver .
+          command: docker build -t webserver:latest .
       - run:
           name: Save Image
-          command: mkdir workspace && docker save webserver > workspace/webserver.tar
+          command: mkdir -p workspace && docker save webserver:latest > workspace/webserver.tar
       - persist_to_workspace:
           root: workspace
           paths:
