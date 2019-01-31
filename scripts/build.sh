@@ -1,6 +1,10 @@
 set -e
 
+cd tmp/workspace && ls
+cd ../..
+docker images
 docker load -i /tmp/workspace/webserver.tar
+docker images
 
 if [ "$CIRCLE_BRANCH" == "master" ]
 then
