@@ -1,10 +1,6 @@
 set -e
 
-cd tmp/workspace && ls
-cd ../..
-docker images
 docker load -i /tmp/workspace/webserver.tar
-docker images
 
 if [ "$CIRCLE_BRANCH" == "master" ]
 then
@@ -12,5 +8,3 @@ then
 else
     export IMAGE_TAG=$CIRCLE_BRANCH
 fi
-
-docker tag webserver:latest us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$IMAGE_TAG .

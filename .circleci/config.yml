@@ -46,7 +46,7 @@ jobs:
           command: gcloud auth configure-docker
       - run:
           name: Retag Docker Image
-          command: scripts/build.sh
+          command: scripts/build.sh && docker tag webserver:latest us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$IMAGE_TAG .
       - run: 
           name: Push Image to GCR
           command: scripts/deploy.sh
