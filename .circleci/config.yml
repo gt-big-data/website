@@ -11,7 +11,7 @@ jobs:
           command: apk update && apk add docker
       - run:
           name: Build Webserver Image
-          command: docker build -t webserver
+          command: docker build -t webserver .
       - run:
           name: Save Image
           command: docker save webserver > workspace/webserver.tar
