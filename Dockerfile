@@ -23,7 +23,7 @@ RUN uglifycss css/styles.css > css/styles.min.css
 FROM python:3.7-alpine
 
 # Copy the source code into the current dir
-COPY prod-requirements.txt .
+COPY requirements-prod.txt .
 
 # Install from the prod-requirements.txt and delete it from the image
 RUN pip install --no-cache-dir -r requirements-prod.txt && rm requirements-prod.txt
