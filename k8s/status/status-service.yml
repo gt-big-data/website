@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: status
+spec:
+  selector:
+    app: status
+  ports:
+  - protocol: TCP
+    port: 4002
+    targetPort: 8484
+  type: NodePort

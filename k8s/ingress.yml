@@ -6,9 +6,24 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: bdc-kubernetes
 spec:
   rules:
-  - http:
+  - host: gtbigdata.club
+    http:
       paths:
       - path: /
         backend:
           serviceName: website
           servicePort: 4000
+  - host: api.gtbigdata.club
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: api
+          servicePort: 4001
+  - host: status.gtbigdata.club
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: status
+          servicePort: 4002

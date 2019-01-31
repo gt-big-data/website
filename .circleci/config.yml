@@ -68,7 +68,9 @@ workflows:
   build-test-deploy:
     jobs:
       - build
-      - test
+      - test:
+          requires:
+            - build
       - deploy:
           requires:
             - build
@@ -81,3 +83,4 @@ workflows:
               only:
                 - master
                 - content-restoration
+                - api-status-integration
