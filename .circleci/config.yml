@@ -14,7 +14,7 @@ jobs:
           command: docker build -t webserver .
       - run:
           name: Save Image
-          command: docker save webserver > workspace/webserver.tar
+          command: mkdir workspace && docker save webserver > workspace/webserver.tar
       - persist_to_workspace:
           root: workspace
           paths:
