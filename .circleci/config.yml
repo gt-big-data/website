@@ -10,8 +10,15 @@ jobs:
           name: Install Docker CLI
           command: apk update && apk add docker
       - run:
-          name: Build Image
-          command: docker build --rm=false -t us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$CIRCLE_SHA1 .
+          name: Build Webserver Image
+          command: docker build -t webserver
+      - run:
+          name: Save Image
+          command: docker save webserver > workspace/webserver.tar
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - webserver.tar
   test:
     docker:
       - image: python:3.7-alpine
@@ -29,6 +36,8 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - attach_workspace:
+          at: /tmp/workspace
       - run:
           name: Authenticate to Google Cloud
           command: scripts/auth.sh
@@ -36,7 +45,7 @@ jobs:
           name: Connect Docker and Google Cloud
           command: gcloud auth configure-docker
       - run:
-          name: Build Image
+          name: Retag Docker Image
           command: scripts/build.sh
       - run: 
           name: Push Image to GCR
