@@ -28,11 +28,12 @@ COPY requirements-prod.txt .
 # Install from the prod-requirements.txt and delete it from the image
 RUN pip install --no-cache-dir -r requirements-prod.txt && rm requirements-prod.txt
 
+# Copy the srouce code over
+COPY src .
+
 # Copy the modified staticfiles from the builder stage
 COPY --from=builder assets/favicon static/assets/favicon
-COPY --from=builder css/styles.min.css static/css/styles.css
-
-COPY src .
+COPY --from=builder css/styles.min.css static/css/styles.min.css
 
 # Expose a port for the webserver
 EXPOSE 9001
