@@ -10,15 +10,15 @@ spec:
   - host: gtbigdata.club
     http:
       paths:
-      - path: /
+      - path: /*
         backend:
           serviceName: website
           servicePort: 4000
-      - path: /api
+      - path: /api/*
         backend:
           serviceName: api
           servicePort: 4001
-      - path: /status
+      - path: /status/*
         backend:
           serviceName: status
           servicePort: 4002
