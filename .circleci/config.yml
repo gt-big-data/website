@@ -46,7 +46,7 @@ jobs:
           name: Connect Docker and Google Cloud
           command: gcloud auth configure-docker
       - run:
-          name: Load, tag, and push Docker image to GCR
+          name: Push Docker image to GCR
           command: |
             docker load -i /tmp/workspace/webserver.tar
             if [ "$CIRCLE_BRANCH" == "master" ]
@@ -57,9 +57,6 @@ jobs:
             fi
             docker tag webserver:latest us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$IMAGE_TAG
             docker push us.gcr.io/${GOOGLE_PROJECT_ID}/${CIRCLE_PROJECT_REPONAME}:$IMAGE_TAG
-      - run: 
-          name: Push image to GCR
-          command: scripts/deploy.sh
   update-k8s:
     docker:
       - image: google/cloud-sdk:latest
