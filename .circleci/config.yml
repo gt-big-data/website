@@ -88,5 +88,4 @@ workflows:
             branches:
               only:
                 - master
-                - content-restoration
-                - api-status-integration
+                - k8s
