@@ -1,0 +1,7 @@
+apiVersion: gke.googleapis.com/v1alpha1
+kind: ManagedCertificate
+metadata:
+  name: gtbigdata-certificate
+spec:
+  domains:
+    - gtbigdata.club

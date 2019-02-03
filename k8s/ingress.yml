@@ -4,11 +4,8 @@ metadata:
   name: ingress-router
   annotations:
     kubernetes.io/ingress.global-static-ip-name: bdc-kubernetes
+    gke.googleapis.com/managed-certificates: gtbigdata-certificate
 spec:
-  tls:
-  - hosts:
-    - gtbigdata.club
-    secretName: letsencrypt-prod
   rules:
   - host: gtbigdata.club
     http:

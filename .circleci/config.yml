@@ -79,15 +79,14 @@ workflows:
     jobs:
       - build
       - test:
-          requires:
-            - build
       - deploy:
           requires:
             - build
             - test
       - update-k8s:
           requires:
-            - deploy
+            - build
+            - test
           filters:
             branches:
               only:
