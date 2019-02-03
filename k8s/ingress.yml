@@ -5,6 +5,10 @@ metadata:
   annotations:
     kubernetes.io/ingress.global-static-ip-name: bdc-kubernetes
 spec:
+  tls:
+  - hosts:
+    - gtbigdata.club
+    secretName: letsencrypt-prod
   rules:
   - host: gtbigdata.club
     http:

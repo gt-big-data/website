@@ -1,0 +1,17 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: letsencrypt-prod
+spec:
+  secretName: letsencrypt-prod
+  dnsNames:
+  - gtbigdata.club
+  acme:
+    config:
+    - http01:
+        ingress: ingress-router
+      domains:
+      - gtbigdata.club
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
