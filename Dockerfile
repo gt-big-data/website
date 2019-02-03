@@ -32,7 +32,9 @@ RUN pip install --no-cache-dir -r requirements-prod.txt && rm requirements-prod.
 COPY src .
 
 # Copy the modified staticfiles from the builder stage
-COPY --from=builder assets/favicon static/assets/favicon
+COPY --from=builder assets/favicon/16x16.png static/assets/favicon/16x16.png
+COPY --from=builder assets/favicon/32x32.png static/assets/favicon/32x32.png
+COPY --from=builder assets/favicon/96x96.png static/assets/favicon/96x96.png
 COPY --from=builder css/styles.min.css static/css/styles.min.css
 
 # Expose a port for the webserver
