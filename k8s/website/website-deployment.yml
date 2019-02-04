@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: website
-        image: us.gcr.io/bdc-backend/website:content-restoration
+        image: us.gcr.io/bdc-backend/website:master
         ports:
         - name: http
           containerPort: 9001
