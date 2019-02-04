@@ -14,10 +14,6 @@ spec:
         backend:
           serviceName: website
           servicePort: 4000
-      - path: /static/*
-        backend:
-          serviceName: website
-          servicePort: 4000
       - path: /api
         backend:
           serviceName: api
