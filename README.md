@@ -10,7 +10,7 @@ This is where the code for our website lives alongside the .yml files that dicta
 
 To be as buzzword-y as possible, this repo represents a cluster of two (2) Dockerized microservices (this site, and [our internal api](https://github.com/gt-big-data/api)), each with one (1) deployment by default. If you think that sounds like overkill for a club, you're right. If you think that sounds like fun, feel free to hit us up on [Facebook](https://www.facebook.com/gtbigdataclub/) or [Slack](https://bigdataclub.slack.com)
 
-In alphabetical order, here's what's happening in this repo
+In alphabetical order, here's what's happening in this repo.
 
 * [.circleci/](#.circleci/)
 * [k8s/](#k8s/)
