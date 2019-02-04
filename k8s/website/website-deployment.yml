@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: website
-        image: us.gcr.io/bdc-backend/website:master
+        image: us.gcr.io/bdc-backend/website:latest
         ports:
         - name: http
           containerPort: 9001
