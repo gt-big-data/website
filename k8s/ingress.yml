@@ -18,6 +18,10 @@ spec:
         backend:
           serviceName: api
           servicePort: 4001
+      - path: /api/*
+        backend:
+          serviceName: api
+          servicePort: 4001
       - path: /*
         backend:
           serviceName: website
