@@ -22,7 +22,7 @@ spec:
         backend:
           serviceName: api
           servicePort: 4001
-      - path: /status
+      - path: /*
         backend:
-          serviceName: status
-          servicePort: 4002
+          serviceName: website
+          servicePort: 4000
