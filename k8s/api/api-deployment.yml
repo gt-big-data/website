@@ -17,10 +17,6 @@ spec:
       containers:
       - name: api
         image: us.gcr.io/bdc-backend/api:latest
-        resources:
-          limits:
-            cpu: 500m
-            memory: 128Mi
         ports:
         - name: http
           containerPort: 9001
