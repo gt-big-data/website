@@ -8,5 +8,5 @@ spec:
   ports:
   - protocol: TCP
     port: 4001
-    targetPort: 8484
+    targetPort: 9001 #8484
   type: NodePort
